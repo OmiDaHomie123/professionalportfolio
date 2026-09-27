@@ -94,33 +94,39 @@ a:hover { color: var(--color-accent); }
   <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
     <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline;margin:0 0 12px">
       <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">01 · By the numbers</span>
-      <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Tap any number to recount</span>
+      <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Take a guess, then tap to reveal</span>
     </div>
     <div style="height:1px;background:var(--color-divider);margin:0 0 40px"></div>
     <div ref="{{ statsRef }}" data-reveal="" class="blueprint" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1px;background:var(--color-divider)">
       <button onClick="{{ count.c0 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
         <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c0 }}</span>
         <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Southern California cities represented at the SCAG Summit, where I led our student delegation</span>
+        <span style="margin-top:auto;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">{{ statHint.c0 }}</span>
       </button>
       <button onClick="{{ count.c1 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
         <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c1 }}</span>
         <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">mayors across SoCal working with the Youth Civics Think Tank</span>
+        <span style="margin-top:auto;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">{{ statHint.c1 }}</span>
       </button>
       <button onClick="{{ count.c2 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
         <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c2 }}</span>
         <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">pages of discovery analyzed as a law intern</span>
+        <span style="margin-top:auto;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">{{ statHint.c2 }}</span>
       </button>
       <button onClick="{{ count.c3 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
         <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c3 }}</span>
         <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">elementary students introduced to coding through my RoboCamp curriculum</span>
+        <span style="margin-top:auto;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">{{ statHint.c3 }}</span>
       </button>
       <button onClick="{{ count.c4 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
         <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c4 }}</span>
         <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">volunteer hours, earning the Presidential Volunteer Service Award, Gold Tier</span>
+        <span style="margin-top:auto;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">{{ statHint.c4 }}</span>
       </button>
       <button onClick="{{ count.c5 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
         <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c5 }}</span>
         <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">won across two first-place finishes in KnoPro AI challenges</span>
+        <span style="margin-top:auto;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">{{ statHint.c5 }}</span>
       </button>
       <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     </div>
@@ -295,6 +301,7 @@ a:hover { color: var(--color-accent); }
       <span style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-300)">votes cast from this browser</span>
       <span style="font-size:17px;min-height:26px;color:var(--color-bg)">{{ voteMsg }}</span>
     </div>
+    <span style="font-size:14px;color:var(--color-accent-200)">Shortcut: type <strong style="font-family:var(--font-heading);letter-spacing:0.12em;color:var(--color-bg)">VOTE</strong> anywhere on the page.</span>
   </div>
 </section>
 
@@ -320,14 +327,26 @@ a:hover { color: var(--color-accent); }
           <span style="margin-left:auto;font-size:14px;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Lakewood, CA</span>
           <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
         </div>
+        <div class="blueprint" style="padding:20px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <a href="https://www.linkedin.com/in/omkarsiddeswaran" target="_blank" rel="noopener" style="flex:1;min-width:0;font-size:18px;font-weight:500;overflow-wrap:anywhere">linkedin.com/in/omkarsiddeswaran</a>
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <footer style="max-width:1200px;margin:0 auto;padding:32px clamp(20px,5vw,72px) 48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:color-mix(in srgb, var(--color-text) 70%, transparent);border-top:1px solid var(--color-divider)">
-  <span>© 2026 Omkar Siddeswaran</span>
-  <span>Easter eggs found: {{ eggCount }} / 3 · hint: a photo, a word, a classic code</span>
+  <span style="display:flex;align-items:baseline;gap:4px"><button onClick="{{ onCopyright }}" aria-label="Show disclaimer" style="background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer" style-hover="color:var(--color-accent-700)">©</button> 2026 Omkar Siddeswaran</span>
+  <span>Easter eggs found: {{ eggCount }} / 4 · hint: a photo, a word, a pile, the fine print</span>
+  <sc-if value="{{ showDisclaimer }}" hint-placeholder-val="{{ false }}">
+    <div class="blueprint" style="flex-basis:100%;padding:14px 18px;display:flex;flex-direction:column;gap:4px;color:var(--color-text)">
+      <span style="font-family:var(--font-heading);font-weight:600;font-size:18px;letter-spacing:0.04em;text-transform:uppercase">Paid for by Omkar 2026</span>
+      <span style="font-size:13px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 75%, transparent)">Not authorized by any candidate or candidate's committee. Not actually running for anything (yet).</span>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    </div>
+  </sc-if>
 </footer>
 
 <div style="position:fixed;left:50%;bottom:28px;z-index:9000;transform:translate(-50%, {{ toastY }});opacity:{{ toastOpacity }};transition:opacity .3s, transform .3s;pointer-events:none;background:var(--color-text);color:var(--color-bg);padding:12px 20px;font-family:var(--font-heading);font-weight:600;font-size:18px;letter-spacing:0.04em;text-transform:uppercase;max-width:calc(100vw - 40px);text-align:center">{{ toast }}</div>
@@ -343,7 +362,7 @@ const STATS = [
 ];
 const GREETS = ['வணக்கம்!', 'నమస్కారం!', '¡Hola!', 'Hello!'];
 const VOTE_MSGS = ['Motion carried.', 'The ayes have it.', 'Landslide incoming.', 'A mandate from the people.', 'Recount? Not necessary.', 'Your voice has been heard.'];
-const KONAMI = ['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];
+const EGG_IDS = ['hello', 'word', 'stack', 'fineprint'];
 const START_POS = {
   oratory: { x: 0.0, y: 0.03, r: -5 },
   mun: { x: 0.56, y: 0.0, r: 4 },
@@ -356,10 +375,10 @@ const load = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); re
 class Component extends DCLogic {
   state = {
     pos: START_POS, order: Object.keys(START_POS), dragging: null,
-    objection: false, stats: STATS.map(() => 0),
+    objection: false, stats: STATS.map(() => 0), revealed: {},
     votes: load('omkar-portfolio-votes', 0), voteMsg: '', voteScale: 1,
     toast: '', toastOn: false, eggs: load('omkar-portfolio-eggs', {}),
-    greet: '', greetIdx: -1, dev: {},
+    greet: '', greetIdx: -1, dev: {}, disclaimer: false,
   };
   boardRef = React.createRef();
   statsRef = React.createRef();
@@ -377,14 +396,8 @@ class Component extends DCLogic {
       this.keys.push(e.key.toLowerCase());
       this.keys = this.keys.slice(-10);
       if (this.keys.slice(-4).join('') === 'vote') { this.vote(); this.egg('word', 'you typed your way to the ballot box.'); }
-      if (this.keys.join(',') === KONAMI.join(',')) { this.burst(innerWidth / 2, innerHeight / 3, 220); this.egg('konami', 'All rise. Court is now in session.'); }
     };
     addEventListener('keydown', this.onKey);
-    if (this.statsRef.current) {
-      const io = new IntersectionObserver((en) => { if (en[0].isIntersecting) { STATS.forEach((_, i) => this.count(i, i * 90)); io.disconnect(); } }, { threshold: 0.3 });
-      io.observe(this.statsRef.current);
-      this.statsIO = io;
-    }
   }
   componentWillUnmount() {
     removeEventListener('keydown', this.onKey);
@@ -472,7 +485,7 @@ class Component extends DCLogic {
     const eggs = { ...this.state.eggs, [id]: true };
     try { localStorage.setItem('omkar-portfolio-eggs', JSON.stringify(eggs)); } catch (e) {}
     this.setState({ eggs });
-    this.showToast(`Easter egg ${Object.keys(eggs).length}/3: ${msg}`);
+    this.showToast(`Easter egg ${EGG_IDS.filter((k) => eggs[k]).length}/4: ${msg}`);
   }
 
   count(i, delay = 0) {
@@ -519,12 +532,23 @@ class Component extends DCLogic {
     removeEventListener('pointermove', this.onMove);
     const d = this.drag; this.drag = null;
     this.setState({ dragging: null });
+    if (d && d.moved) this.checkStack();
     if (d && !d.moved && d.key === 'gavel') {
       const objection = !this.state.objection;
       this.setState({ objection });
       if (objection) this.showToast('Sustained. The witness will answer the question.');
     }
   };
+
+  checkStack() {
+    const b = this.boardRef.current; if (!b) return;
+    const r = b.getBoundingClientRect(), ps = Object.values(this.state.pos);
+    const xs = ps.map((p) => p.x * r.width), ys = ps.map((p) => p.y * r.height);
+    if (Math.max(...xs) - Math.min(...xs) < 120 && Math.max(...ys) - Math.min(...ys) < 90) {
+      this.burst(r.left + Math.min(...xs) + 80, r.top + Math.min(...ys) + 30, 120);
+      this.egg('stack', 'Consensus reached.');
+    }
+  }
 
   onHeadClick = () => {
     const greetIdx = (this.state.greetIdx + 1) % GREETS.length;
@@ -543,8 +567,13 @@ class Component extends DCLogic {
     });
     const drag = {}; Object.keys(START_POS).forEach((k) => (drag[k] = this.startDrag(k)));
     const fmt = (n) => n.toLocaleString('en-US');
-    const stat = {}, count = {};
-    STATS.forEach((st, i) => { stat['c' + i] = st.pre + fmt(s.stats[i]) + st.suf; count['c' + i] = () => this.count(i); });
+    const stat = {}, count = {}, statHint = {};
+    STATS.forEach((st, i) => {
+      const r = s.revealed[i];
+      stat['c' + i] = r ? st.pre + fmt(s.stats[i]) + st.suf : '?';
+      statHint['c' + i] = r ? 'Revealed' : 'Tap to reveal';
+      count['c' + i] = () => { if (this.state.revealed[i]) return; this.setState((x) => ({ revealed: { ...x.revealed, [i]: true } })); this.count(i); };
+    });
     const ids = ['head', 'harris', 'puri'];
     const dev = {}, devOn = {}, devOff = {}, devToggle = {};
     ids.forEach((id) => {
@@ -555,7 +584,7 @@ class Component extends DCLogic {
     });
     return {
       boardRef: this.boardRef, statsRef: this.statsRef, voteBtnRef: this.voteBtnRef,
-      pos, drag, stat, count, dev, devOn, devOff, devToggle,
+      pos, drag, stat, count, statHint, dev, devOn, devOff, devToggle,
       objection: s.objection ? 'Sustained.' : 'Objection!',
       gavelRot: s.objection ? '-35deg' : '0deg',
       greet: s.greet || ' ', greetOpacity: s.greet ? 1 : 0, greetY: s.greet ? '0px' : '8px',
@@ -563,7 +592,9 @@ class Component extends DCLogic {
       votes: fmt(s.votes), voteMsg: s.voteMsg || ' ', voteScale: s.voteScale,
       onVote: () => this.vote(),
       toast: s.toast || ' ', toastOpacity: s.toastOn ? 1 : 0, toastY: s.toastOn ? '0px' : '16px',
-      eggCount: Object.keys(s.eggs).length,
+      eggCount: EGG_IDS.filter((k) => s.eggs[k]).length,
+      showDisclaimer: s.disclaimer,
+      onCopyright: () => { this.setState((x) => ({ disclaimer: !x.disclaimer })); this.egg('fineprint', 'you read the fine print.'); },
       copyEmail: () => { try { navigator.clipboard.writeText('omkarsiddeswaran@gmail.com'); this.showToast('Email copied. Talk soon!'); } catch (e) { this.showToast('omkarsiddeswaran@gmail.com'); } },
     };
   }
