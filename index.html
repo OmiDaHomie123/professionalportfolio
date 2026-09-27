@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Omkar Siddeswaran — Civic advocate</title>
+<meta name="description" content="Omkar Siddeswaran: co-founder of the Youth Civics Think Tank, law intern, and Class of 2028 at Gretchen Whitney High School.">
+<link rel="stylesheet" href="styles.css">
+<style>
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; overflow-x: clip; text-wrap: pretty; }
+a { color: var(--color-accent-700); }
+a:hover { color: var(--color-accent); }
+.duotone::after { transition: opacity .6s ease; }
+.developed::after { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</helmet>
+
+<nav class="nav" style="position:sticky;top:0;z-index:50;flex-wrap:wrap;row-gap:6px;padding:12px clamp(20px,5vw,72px);background:color-mix(in srgb, var(--color-bg) 90%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-divider)">
+  <a href="#top" class="nav-brand" style="font-size:20px;text-transform:uppercase;letter-spacing:0.02em">Omkar Siddeswaran</a>
+  <a href="#think-tank">Think Tank</a>
+  <a href="#record">Receipts</a>
+  <a href="#legal">Law</a>
+  <a href="#docket">Docket</a>
+  <a href="#awards">Awards</a>
+  <a href="#contact">Contact</a>
+  <a href="#vote" class="btn btn-primary" style="color:var(--color-bg);white-space:nowrap;flex:none">Vote Omkar</a>
+</nav>
+
+<section id="top" style="padding:clamp(40px,7vw,96px) 0 clamp(56px,8vw,112px)">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,80px);align-items:center">
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:24px">
+      <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">Class of 2028 · Gretchen Whitney High School</span>
+      <h1 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,7.4vw,104px);line-height:0.96;letter-spacing:0.005em;text-transform:uppercase;margin:0">
+        <span style="display:block">Hi, I'm Omkar.</span>
+        <span style="display:block;color:var(--color-accent-700)">I turn youth ideas into policy.</span>
+      </h1>
+      <p style="font-size:18px;line-height:1.55;margin:0;max-width:52ch;color:color-mix(in srgb, var(--color-text) 85%, transparent)">I'm a high school junior in Lakewood, CA. I co-founded the Youth Civics Think Tank, coordinate the City of Artesia's youth internship, and intern at a personal injury law firm. I care about public service, civic engagement, and opening doors for underserved communities.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+        <a href="#vote" class="btn btn-primary blueprint" style="font-size:17px;padding:13px 22px;color:var(--color-bg);text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap;flex:none">Cast your vote<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></a>
+        <a href="#record" class="btn btn-secondary" style="font-size:17px;padding:13px 22px;text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap;flex:none">See the receipts</a>
+      </div>
+      <span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Psst: the stickers move. Drag them around.</span>
+    </div>
+
+    <div ref="{{ boardRef }}" style="position:relative;height:clamp(440px,46vw,580px)">
+      <div style="position:absolute;left:50%;top:50%;width:min(58%,340px);transform:translate(-50%,-50%)">
+        <div style="position:absolute;left:50%;bottom:calc(100% + 16px);transform:translate(-50%, {{ greetY }});opacity:{{ greetOpacity }};transition:opacity .25s, transform .25s;background:var(--color-text);color:var(--color-bg);padding:8px 16px;font-family:var(--font-heading);font-weight:600;font-size:24px;white-space:nowrap;pointer-events:none">{{ greet }}</div>
+        <div class="blueprint duotone {{ dev.head }}" onClick="{{ onHeadClick }}" onMouseEnter="{{ devOn.head }}" onMouseLeave="{{ devOff.head }}" data-hover="" style="aspect-ratio:1/1;cursor:pointer">
+          <img src="assets/headshot.jpg" alt="Portrait of Omkar Siddeswaran" style="width:100%;height:100%;object-fit:cover;display:block" draggable="false">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </div>
+      </div>
+
+      <div class="blueprint" onPointerDown="{{ drag.oratory }}" style="position:absolute;left:{{ pos.oratory.left }};top:{{ pos.oratory.top }};transform:{{ pos.oratory.tf }};z-index:{{ pos.oratory.z }};box-shadow:{{ pos.oratory.sh }};background:var(--color-bg);padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:grab;user-select:none;touch-action:none;transition:transform .15s, box-shadow .15s;max-width:200px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+        <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:1;text-transform:uppercase">1st in California</span><span style="font-size:12px;line-height:1.3;color:color-mix(in srgb, var(--color-text) 72%, transparent)">American Legion Oratorical · 2026</span></span>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+
+      <div class="blueprint" onPointerDown="{{ drag.mun }}" style="position:absolute;left:{{ pos.mun.left }};top:{{ pos.mun.top }};transform:{{ pos.mun.tf }};z-index:{{ pos.mun.z }};box-shadow:{{ pos.mun.sh }};background:var(--color-bg);padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:grab;user-select:none;touch-action:none;transition:transform .15s, box-shadow .15s;max-width:200px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+        <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:1;text-transform:uppercase">NHSMUN Award</span><span style="font-size:12px;line-height:1.3;color:color-mix(in srgb, var(--color-text) 72%, transparent)">International · New York 2025</span></span>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+
+      <div class="blueprint" onPointerDown="{{ drag.kpmg }}" style="position:absolute;left:{{ pos.kpmg.left }};top:{{ pos.kpmg.top }};transform:{{ pos.kpmg.tf }};z-index:{{ pos.kpmg.z }};box-shadow:{{ pos.kpmg.sh }};background:var(--color-bg);padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:grab;user-select:none;touch-action:none;transition:transform .15s, box-shadow .15s;max-width:200px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle></svg>
+        <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:1;text-transform:uppercase">1st Place, twice</span><span style="font-size:12px;line-height:1.3;color:color-mix(in srgb, var(--color-text) 72%, transparent)">KnoPro KPMG + Global Health AI Challenges</span></span>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+
+      <div class="blueprint" onPointerDown="{{ drag.logo }}" style="position:absolute;left:{{ pos.logo.left }};top:{{ pos.logo.top }};transform:{{ pos.logo.tf }};z-index:{{ pos.logo.z }};box-shadow:{{ pos.logo.sh }};background:#fff;padding:8px;cursor:grab;user-select:none;touch-action:none;transition:transform .15s, box-shadow .15s;width:clamp(104px,11vw,140px)">
+        <img src="assets/yctt-logo.png" alt="Youth Civics Think Tank logo" draggable="false" style="width:100%;display:block;pointer-events:none">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+
+      <div class="blueprint" onPointerDown="{{ drag.gavel }}" style="position:absolute;left:{{ pos.gavel.left }};top:{{ pos.gavel.top }};transform:{{ pos.gavel.tf }};z-index:{{ pos.gavel.z }};box-shadow:{{ pos.gavel.sh }};background:var(--color-accent-900);color:var(--color-bg);padding:10px 14px;display:flex;align-items:center;gap:10px;cursor:grab;user-select:none;touch-action:none;transition:transform .15s, box-shadow .15s">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none;transform:rotate({{ gavelRot }});transition:transform .2s"><path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8"></path><path d="m16 16 6-6"></path><path d="m8 8 6-6"></path><path d="m9 7 8 8"></path><path d="m21 11-8-8"></path></svg>
+        <span style="display:flex;flex-direction:column;gap:2px"><span style="font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:1;text-transform:uppercase">{{ objection }}</span><span style="font-size:12px;line-height:1.3;color:var(--color-accent-300)">tap to rule</span></span>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="numbers" style="padding:clamp(48px,7vw,96px) 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline;margin:0 0 12px">
+      <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">01 · By the numbers</span>
+      <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Tap any number to recount</span>
+    </div>
+    <div style="height:1px;background:var(--color-divider);margin:0 0 40px"></div>
+    <div ref="{{ statsRef }}" data-reveal="" class="blueprint" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1px;background:var(--color-divider)">
+      <button onClick="{{ count.c0 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
+        <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c0 }}</span>
+        <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">Southern California cities represented at the SCAG Summit, where I led our student delegation</span>
+      </button>
+      <button onClick="{{ count.c1 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
+        <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c1 }}</span>
+        <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">mayors across SoCal working with the Youth Civics Think Tank</span>
+      </button>
+      <button onClick="{{ count.c2 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
+        <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c2 }}</span>
+        <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">pages of discovery analyzed as a law intern</span>
+      </button>
+      <button onClick="{{ count.c3 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
+        <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c3 }}</span>
+        <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">elementary students introduced to coding through my RoboCamp curriculum</span>
+      </button>
+      <button onClick="{{ count.c4 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
+        <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c4 }}</span>
+        <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">volunteer hours, earning the Presidential Volunteer Service Award, Gold Tier</span>
+      </button>
+      <button onClick="{{ count.c5 }}" style="background:var(--color-bg);border:0;text-align:left;padding:28px 24px;cursor:pointer;display:flex;flex-direction:column;gap:12px;font:inherit;color:inherit;min-height:176px;transition:background .2s" style-hover="background:var(--color-accent-100)">
+        <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(52px,6vw,76px);line-height:0.9;font-feature-settings:'tnum' 1">{{ stat.c5 }}</span>
+        <span style="font-size:15px;line-height:1.45;color:color-mix(in srgb, var(--color-text) 80%, transparent)">won across two first-place finishes in KnoPro AI challenges</span>
+      </button>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    </div>
+  </div>
+</section>
+
+<section id="think-tank" style="padding:clamp(48px,7vw,96px) 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 12px">02 · Youth Civics Think Tank</span>
+    <div style="height:1px;background:var(--color-divider);margin:0 0 40px"></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(32px,5vw,72px);align-items:center">
+      <figure data-reveal="" class="blueprint" style="margin:0;padding:clamp(24px,4vw,48px);display:grid;place-items:center">
+        <img src="assets/yctt-logo.png" alt="Youth Civics Think Tank logo" style="width:100%;max-width:380px;display:block">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </figure>
+      <div data-reveal="" style="display:flex;flex-direction:column;gap:20px">
+        <h2 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(36px,4.6vw,60px);line-height:1;text-transform:uppercase;letter-spacing:0.005em;margin:0">A think tank run by students. Taken seriously by mayors.</h2>
+        <span class="tag tag-accent" style="align-self:flex-start;font-size:13px">Co-Founder / Director of Outreach · May 2025 – Present</span>
+        <p style="font-size:17px;line-height:1.6;margin:0;max-width:54ch">I co-founded YCTT to connect youth civic engagement to real policy outcomes through policy research. We publicly launched at the SCAG Annual Summit in front of regional government stakeholders, and we've been building ever since.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(24px,3vw,40px);margin-top:clamp(48px,6vw,72px)">
+      <div data-reveal="" class="blueprint" style="padding:28px 24px;display:flex;flex-direction:column;gap:12px;transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px);box-shadow:var(--shadow-md)">
+        <span style="font-size:13px;letter-spacing:0.08em;font-weight:600;color:var(--color-accent-700)">A</span>
+        <h3 style="font-family:var(--font-heading);font-weight:600;font-size:26px;line-height:1.05;text-transform:uppercase;margin:0">STEM Advocacy Project</h3>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Launched SAP with CurioCrate™, mobilizing student advocates to expand access to hands-on STEM curricula for elementary schools nationwide.</p>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+      <div data-reveal="" class="blueprint" style="padding:28px 24px;display:flex;flex-direction:column;gap:12px;transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px);box-shadow:var(--shadow-md)">
+        <span style="font-size:13px;letter-spacing:0.08em;font-weight:600;color:var(--color-accent-700)">B</span>
+        <h3 style="font-family:var(--font-heading);font-weight:600;font-size:26px;line-height:1.05;text-transform:uppercase;margin:0">SCAG Annual Summit</h3>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Led a student delegation to meet mayors, council members, and regional planners representing all 191 Southern California cities, and used the summit to launch YCTT.</p>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+      <div data-reveal="" class="blueprint" style="padding:28px 24px;display:flex;flex-direction:column;gap:12px;transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px);box-shadow:var(--shadow-md)">
+        <span style="font-size:13px;letter-spacing:0.08em;font-weight:600;color:var(--color-accent-700)">C</span>
+        <h3 style="font-family:var(--font-heading);font-weight:600;font-size:26px;line-height:1.05;text-transform:uppercase;margin:0">20+ mayors and counting</h3>
+        <p style="font-size:15px;line-height:1.55;margin:0;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Working with mayors across SoCal and with the offices of Senator Adam Schiff and former Vice President Kamala Harris, both of which now actively support YCTT's network-building.</p>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="record" style="padding:clamp(48px,7vw,96px) 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 12px">03 · On the record</span>
+    <div style="height:1px;background:var(--color-divider);margin:0 0 40px"></div>
+    <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 48px;margin-bottom:clamp(40px,5vw,56px)">
+      <h2 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(36px,4.6vw,60px);line-height:1;text-transform:uppercase;letter-spacing:0.005em;margin:0;max-width:14ch">The receipts.</h2>
+      <p style="font-size:17px;line-height:1.55;margin:0;max-width:44ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Moments from the rooms where the work happens. Hover or tap a photo to develop it in full color.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,3.5vw,48px);align-items:start">
+      <figure data-reveal="" style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <div class="blueprint duotone {{ dev.harris }}" onMouseEnter="{{ devOn.harris }}" onMouseLeave="{{ devOff.harris }}" onClick="{{ devToggle.harris }}" data-hover="" style="aspect-ratio:3/4;cursor:pointer">
+          <img src="assets/harris.jpg" alt="Omkar and fellow students with former Vice President Kamala Harris at the AAPI LEAD Summit" style="width:100%;height:100%;object-fit:cover;display:block" loading="lazy">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </div>
+        <span class="tag tag-accent" style="align-self:flex-start;font-size:12px">AAPI LEAD Summit · Los Angeles '26</span>
+        <figcaption style="font-size:16px;line-height:1.55;margin:0;color:var(--color-text)">Met former VP Kamala Harris at the AAPI LEAD Summit, turned a selfie into a 2-minute pitch about YCTT's mission — now scheduling a follow-up meeting with her team.</figcaption>
+      </figure>
+      <figure data-reveal="" style="margin:0;display:flex;flex-direction:column;gap:16px">
+        <div class="blueprint duotone {{ dev.puri }}" onMouseEnter="{{ devOn.puri }}" onMouseLeave="{{ devOff.puri }}" onClick="{{ devToggle.puri }}" data-hover="" style="aspect-ratio:3/4;cursor:pointer">
+          <img src="assets/puri.jpg" alt="Omkar shaking hands with former UN Assistant Secretary-General Lakshmi Puri" style="width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block" loading="lazy">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </div>
+        <span class="tag tag-accent" style="align-self:flex-start;font-size:12px">YCTT × United Nations</span>
+        <figcaption style="font-size:16px;line-height:1.55;margin:0;color:var(--color-text)">Helped organize YCTT's collaboration with the UN, hosting former UN Assistant Secretary-General Lakshmi Puri for a keynote and youth Q&amp;A</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="legal" style="padding:clamp(48px,7vw,96px) 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 12px">04 · Law &amp; advocacy</span>
+    <div style="height:1px;background:var(--color-divider);margin:0 0 40px"></div>
+    <div data-reveal="" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px 48px;margin-bottom:clamp(40px,5vw,56px)">
+      <h2 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(36px,4.6vw,60px);line-height:1;text-transform:uppercase;letter-spacing:0.005em;margin:0;max-width:16ch">I like a good argument.</h2>
+      <p style="font-size:17px;line-height:1.55;margin:0;max-width:44ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">In a law office, a courtroom competition, and at the podium.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,3vw,40px)">
+      <div data-reveal="" class="blueprint" style="padding:28px 24px;display:flex;flex-direction:column;gap:14px;transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px);box-shadow:var(--shadow-md)">
+        <span class="tag tag-neutral" style="align-self:flex-start">Dec 2025 – Present</span>
+        <h3 style="font-family:var(--font-heading);font-weight:600;font-size:28px;line-height:1.05;text-transform:uppercase;margin:0">Law Intern</h3>
+        <span style="font-size:14px;font-weight:500;color:var(--color-accent-700)">Law Offices of Rodrigo F. Diaz · under attorney supervision</span>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 85%, transparent)">
+          <li>Analyzed 750+ pages of discovery (FROGs, RPDs, RFAs) to build evidentiary support for active negligence claims.</li>
+          <li>Drafted deposition outlines, demand letters, medical liens, and letters of representation under attorney review.</li>
+          <li>Worked across multiple simultaneous personal injury cases.</li>
+        </ul>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+      <div data-reveal="" class="blueprint" style="padding:28px 24px;display:flex;flex-direction:column;gap:14px;transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px);box-shadow:var(--shadow-md)">
+        <span class="tag tag-neutral" style="align-self:flex-start">Mar 2026</span>
+        <h3 style="font-family:var(--font-heading);font-weight:600;font-size:28px;line-height:1.05;text-transform:uppercase;margin:0">Oratorical State Finalist</h3>
+        <span style="font-size:14px;font-weight:500;color:var(--color-accent-700)">American Legion Oratorical Contest · California</span>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 85%, transparent)">
+          <li>Placed 1st of ~60 competitors statewide.</li>
+          <li>Delivered a 10-minute constitutional address on structural democratic flaws and their correction via Article V, drawing on Douglass, Alice Paul, and the student-led push for the 26th Amendment.</li>
+          <li>Gave an unrehearsed 5-minute response on a randomly assigned amendment before a live panel.</li>
+        </ul>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+      <div data-reveal="" class="blueprint" style="padding:28px 24px;display:flex;flex-direction:column;gap:14px;transition:transform .25s, box-shadow .25s" style-hover="transform:translateY(-6px);box-shadow:var(--shadow-md)">
+        <span class="tag tag-neutral" style="align-self:flex-start">2024 – Present</span>
+        <h3 style="font-family:var(--font-heading);font-weight:600;font-size:28px;line-height:1.05;text-transform:uppercase;margin:0">Mock Trial Attorney</h3>
+        <span style="font-size:14px;font-weight:500;color:var(--color-accent-700)">Gretchen Whitney High School</span>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5;color:color-mix(in srgb, var(--color-text) 85%, transparent)">
+          <li>Competing as an attorney for the 2026–27 season.</li>
+          <li>As Lead Attorney in 2024, led a 15-member team to the Round 4 Playoffs out of 20+ competing schools.</li>
+          <li>Owned case strategy, witness examination, and closing arguments.</li>
+        </ul>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="docket" style="padding:clamp(48px,7vw,96px) 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 12px">05 · Also on the docket</span>
+    <div style="height:1px;background:var(--color-divider);margin:0 0 40px"></div>
+    <div data-reveal="" class="blueprint" style="overflow-x:auto">
+      <table class="table" style="min-width:760px;font-size:15px">
+        <thead>
+          <tr><th style="padding:14px 20px">Role</th><th style="padding:14px 20px">Where</th><th style="padding:14px 20px">When</th><th style="padding:14px 20px">Highlight</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:16px 20px;font-family:var(--font-heading);font-weight:600;font-size:18px;text-transform:uppercase">Coordinator</td><td style="padding:16px 20px">Thoughts to Actions Youth Internship, City of Artesia</td><td style="padding:16px 20px;white-space:nowrap">Jun 2025 – Present</td><td style="padding:16px 20px">Promoted from the program's youngest-ever intern to sole coordinator; doubled enrollment.</td></tr>
+          <tr><td style="padding:16px 20px;font-family:var(--font-heading);font-weight:600;font-size:18px;text-transform:uppercase">Youth Campaign Volunteer</td><td style="padding:16px 20px">Ali Taj for CA-67 State Assembly</td><td style="padding:16px 20px;white-space:nowrap">Dec 2025 – Present</td><td style="padding:16px 20px">Grassroots outreach and voter engagement across 10–12 districts.</td></tr>
+          <tr><td style="padding:16px 20px;font-family:var(--font-heading);font-weight:600;font-size:18px;text-transform:uppercase">Assistant Secretary General</td><td style="padding:16px 20px">Model United Nations, Whitney HS</td><td style="padding:16px 20px;white-space:nowrap">Sep 2024 – Present</td><td style="padding:16px 20px">Runs operations for 50+ members; recruited 20+ new members with a training curriculum I designed.</td></tr>
+          <tr><td style="padding:16px 20px;font-family:var(--font-heading);font-weight:600;font-size:18px;text-transform:uppercase">Co-Coordinator</td><td style="padding:16px 20px">RoboCamp, Cerritos</td><td style="padding:16px 20px;white-space:nowrap">Summers 2024–26</td><td style="padding:16px 20px">Led 45 mentors, recruited ~60 students, and awarded ~$2,000 in scholarships.</td></tr>
+          <tr><td style="padding:16px 20px;font-family:var(--font-heading);font-weight:600;font-size:18px;text-transform:uppercase">Business Operations Intern</td><td style="padding:16px 20px">Happy Tails GO! (startup)</td><td style="padding:16px 20px;white-space:nowrap">Dec 2025 – Present</td><td style="padding:16px 20px">Market analysis of 15+ LA pet service providers; 3 positioning gaps adopted into strategy.</td></tr>
+          <tr><td style="padding:16px 20px;font-family:var(--font-heading);font-weight:600;font-size:18px;text-transform:uppercase">Marketing Intern</td><td style="padding:16px 20px">The Legal Marketer</td><td style="padding:16px 20px;white-space:nowrap">Dec 2025 – Present</td><td style="padding:16px 20px">Rebuilt the firm website and designed a 3D-printed client acquisition system for 2 locations.</td></tr>
+        </tbody>
+      </table>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    </div>
+  </div>
+</section>
+
+<section id="awards" style="padding:clamp(48px,7vw,96px) 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 12px">06 · Awards &amp; recognition</span>
+    <div style="height:1px;background:var(--color-divider);margin:0 0 24px"></div>
+    <div data-reveal="" style="display:flex;flex-direction:column">
+      <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--color-divider);transition:padding .2s, background .2s" style-hover="padding-left:16px;background:var(--color-accent-100)"><span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700)">01</span><span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(20px,2.2vw,26px);line-height:1.15;text-transform:uppercase">American Legion Oratorical Contest — State Finalist, 1st of ~60</span><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 72%, transparent);padding-right:16px">Mar 2026</span></div>
+      <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--color-divider);transition:padding .2s, background .2s" style-hover="padding-left:16px;background:var(--color-accent-100)"><span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700)">02</span><span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(20px,2.2vw,26px);line-height:1.15;text-transform:uppercase">NHSMUN, New York — International Award Winner</span><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 72%, transparent);padding-right:16px">2025</span></div>
+      <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--color-divider);transition:padding .2s, background .2s" style-hover="padding-left:16px;background:var(--color-accent-100)"><span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700)">03</span><span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(20px,2.2vw,26px);line-height:1.15;text-transform:uppercase">KnoPro KPMG AI Business Revolution Challenge — 1st Place ($5,000)</span><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 72%, transparent);padding-right:16px">Sep 2024</span></div>
+      <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--color-divider);transition:padding .2s, background .2s" style-hover="padding-left:16px;background:var(--color-accent-100)"><span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700)">04</span><span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(20px,2.2vw,26px);line-height:1.15;text-transform:uppercase">KnoPro AI for Global Health Challenge — 1st Place ($5,000)</span><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 72%, transparent);padding-right:16px">Aug 2024</span></div>
+      <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--color-divider);transition:padding .2s, background .2s" style-hover="padding-left:16px;background:var(--color-accent-100)"><span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700)">05</span><span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(20px,2.2vw,26px);line-height:1.15;text-transform:uppercase">Presidential Volunteer Service Award — Gold Tier (330+ hours)</span><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 72%, transparent);padding-right:16px">2022–2025</span></div>
+      <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--color-divider);transition:padding .2s, background .2s" style-hover="padding-left:16px;background:var(--color-accent-100)"><span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700)">06</span><span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(20px,2.2vw,26px);line-height:1.15;text-transform:uppercase">Model United Nations — 7-Time Local Conference Award Winner</span><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 72%, transparent);padding-right:16px">2024–Present</span></div>
+      <div style="display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--color-divider);transition:padding .2s, background .2s" style-hover="padding-left:16px;background:var(--color-accent-100)"><span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700)">07</span><span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(20px,2.2vw,26px);line-height:1.15;text-transform:uppercase">ABCUSD International Junior Optimist Speech Competition — District Winner</span><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 72%, transparent);padding-right:16px">Sep 2022</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="vote" style="background:var(--color-accent-900);color:var(--color-bg);padding:clamp(72px,10vw,140px) 0;margin-top:clamp(32px,5vw,64px)">
+  <div data-reveal="" style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+    <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-300)">07 · The ballot</span>
+    <h2 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(64px,11vw,160px);line-height:0.9;text-transform:uppercase;letter-spacing:0.005em;margin:0">Vote Omkar.</h2>
+    <p style="font-size:18px;line-height:1.55;margin:0;max-width:40ch;color:var(--color-accent-200)">No registration required. The polls never close.</p>
+    <button ref="{{ voteBtnRef }}" onClick="{{ onVote }}" class="btn btn-primary blueprint" style="font-size:22px;padding:18px 36px;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;flex:none;transform:scale({{ voteScale }});transition:transform .12s, background .2s">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"></path><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"></path><path d="M22 19H2"></path></svg>
+      Cast my vote
+      <i class="corner tl" style="color:var(--color-accent-300)"></i><i class="corner tr" style="color:var(--color-accent-300)"></i><i class="corner bl" style="color:var(--color-accent-300)"></i><i class="corner br" style="color:var(--color-accent-300)"></i>
+    </button>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <span style="font-family:var(--font-heading);font-weight:600;font-size:56px;line-height:1;font-feature-settings:'tnum' 1">{{ votes }}</span>
+      <span style="font-size:14px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-300)">votes cast from this browser</span>
+      <span style="font-size:17px;min-height:26px;color:var(--color-bg)">{{ voteMsg }}</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:clamp(64px,8vw,112px) 0 clamp(40px,5vw,64px)">
+  <div style="max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 12px">08 · Contact</span>
+    <div style="height:1px;background:var(--color-divider);margin:0 0 40px"></div>
+    <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,72px);align-items:start">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <h2 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(40px,5.4vw,72px);line-height:0.98;text-transform:uppercase;letter-spacing:0.005em;margin:0">Let's talk policy.</h2>
+        <p style="font-size:17px;line-height:1.6;margin:0;max-width:44ch;color:color-mix(in srgb, var(--color-text) 82%, transparent)">Planning an event, a campaign, or a youth program? I'd love to hear about it. I speak English, Tamil, and Telugu fluently, plus conversational Spanish.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div class="blueprint" style="padding:20px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <a href="mailto:omkarsiddeswaran@gmail.com" style="flex:1;min-width:0;font-size:18px;font-weight:500;overflow-wrap:anywhere">omkarsiddeswaran@gmail.com</a>
+          <button onClick="{{ copyEmail }}" class="btn btn-secondary" style="white-space:nowrap;flex:none">Copy</button>
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </div>
+        <div class="blueprint" style="padding:20px 22px;display:flex;align-items:center;gap:16px">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <a href="tel:+15629648466" style="font-size:18px;font-weight:500">(562) 964-8466</a>
+          <span style="margin-left:auto;font-size:14px;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Lakewood, CA</span>
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="max-width:1200px;margin:0 auto;padding:32px clamp(20px,5vw,72px) 48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:color-mix(in srgb, var(--color-text) 70%, transparent);border-top:1px solid var(--color-divider)">
+  <span>© 2026 Omkar Siddeswaran</span>
+  <span>Easter eggs found: {{ eggCount }} / 3 · hint: a photo, a word, a classic code</span>
+</footer>
+
+<div style="position:fixed;left:50%;bottom:28px;z-index:9000;transform:translate(-50%, {{ toastY }});opacity:{{ toastOpacity }};transition:opacity .3s, transform .3s;pointer-events:none;background:var(--color-text);color:var(--color-bg);padding:12px 20px;font-family:var(--font-heading);font-weight:600;font-size:18px;letter-spacing:0.04em;text-transform:uppercase;max-width:calc(100vw - 40px);text-align:center">{{ toast }}</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const STATS = [
+  { v: 191, pre: '', suf: '' },
+  { v: 20, pre: '', suf: '+' },
+  { v: 750, pre: '', suf: '+' },
+  { v: 180, pre: '', suf: '+' },
+  { v: 330, pre: '', suf: '+' },
+  { v: 10000, pre: '$', suf: '' },
+];
+const GREETS = ['வணக்கம்!', 'నమస్కారం!', '¡Hola!', 'Hello!'];
+const VOTE_MSGS = ['Motion carried.', 'The ayes have it.', 'Landslide incoming.', 'A mandate from the people.', 'Recount? Not necessary.', 'Your voice has been heard.'];
+const KONAMI = ['arrowup','arrowup','arrowdown','arrowdown','arrowleft','arrowright','arrowleft','arrowright','b','a'];
+const START_POS = {
+  oratory: { x: 0.0, y: 0.03, r: -5 },
+  mun: { x: 0.56, y: 0.0, r: 4 },
+  gavel: { x: 0.7, y: 0.46, r: 7 },
+  logo: { x: 0.0, y: 0.64, r: 5 },
+  kpmg: { x: 0.5, y: 0.84, r: -3 },
+};
+const load = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch (e) { return d; } };
+
+class Component extends DCLogic {
+  state = {
+    pos: START_POS, order: Object.keys(START_POS), dragging: null,
+    objection: false, stats: STATS.map(() => 0),
+    votes: load('omkar-portfolio-votes', 0), voteMsg: '', voteScale: 1,
+    toast: '', toastOn: false, eggs: load('omkar-portfolio-eggs', {}),
+    greet: '', greetIdx: -1, dev: {},
+  };
+  boardRef = React.createRef();
+  statsRef = React.createRef();
+  voteBtnRef = React.createRef();
+  keys = [];
+
+  componentDidMount() {
+    this.reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.setupConfetti();
+    this.setupReveal();
+    this.setupCursor();
+    this.onKey = (e) => {
+      const t = e.target;
+      if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+      this.keys.push(e.key.toLowerCase());
+      this.keys = this.keys.slice(-10);
+      if (this.keys.slice(-4).join('') === 'vote') { this.vote(); this.egg('word', 'you typed your way to the ballot box.'); }
+      if (this.keys.join(',') === KONAMI.join(',')) { this.burst(innerWidth / 2, innerHeight / 3, 220); this.egg('konami', 'All rise. Court is now in session.'); }
+    };
+    addEventListener('keydown', this.onKey);
+    if (this.statsRef.current) {
+      const io = new IntersectionObserver((en) => { if (en[0].isIntersecting) { STATS.forEach((_, i) => this.count(i, i * 90)); io.disconnect(); } }, { threshold: 0.3 });
+      io.observe(this.statsRef.current);
+      this.statsIO = io;
+    }
+  }
+  componentWillUnmount() {
+    removeEventListener('keydown', this.onKey);
+    this.statsIO && this.statsIO.disconnect();
+    this.revealIO && this.revealIO.disconnect();
+    this.canvas && this.canvas.remove();
+    this.cursor && this.cursor.remove();
+    cancelAnimationFrame(this.cRaf); cancelAnimationFrame(this.curRaf);
+  }
+
+  setupReveal() {
+    if (this.reduced || !('IntersectionObserver' in window)) return;
+    const els = document.querySelectorAll('[data-reveal]');
+    this.revealIO = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        en.target.style.opacity = '1'; en.target.style.translate = '0 0';
+        this.revealIO.unobserve(en.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < innerHeight) return;
+      el.style.opacity = '0'; el.style.translate = '0 28px';
+      el.style.transition = [el.style.transition, 'opacity .7s ease', 'translate .7s cubic-bezier(.2,.7,.2,1)'].filter(Boolean).join(', ');
+      this.revealIO.observe(el);
+    });
+  }
+
+  setupCursor() {
+    if (!matchMedia('(pointer: fine)').matches || this.reduced) return;
+    const c = document.createElement('div');
+    Object.assign(c.style, { position: 'fixed', left: '0', top: '0', width: '30px', height: '30px', pointerEvents: 'none', zIndex: '9998', transition: 'width .2s, height .2s, rotate .25s', opacity: '0' });
+    const mk = (s) => { const d = document.createElement('div'); Object.assign(d.style, { position: 'absolute', background: 'var(--color-accent)' }, s); c.appendChild(d); };
+    mk({ left: '50%', top: '0', width: '1px', height: '100%' });
+    mk({ top: '50%', left: '0', height: '1px', width: '100%' });
+    document.body.appendChild(c); this.cursor = c;
+    let tx = -100, ty = -100, x = -100, y = -100;
+    addEventListener('pointermove', (e) => {
+      tx = e.clientX; ty = e.clientY; c.style.opacity = '1';
+      const hot = e.target.closest && e.target.closest('a, button, [data-hover], .blueprint[style*="grab"]');
+      const s = hot ? '48px' : '30px'; c.style.width = s; c.style.height = s; c.style.rotate = hot ? '45deg' : '0deg';
+    });
+    document.addEventListener('pointerleave', () => { c.style.opacity = '0'; });
+    const tick = () => { x += (tx - x) * 0.22; y += (ty - y) * 0.22; c.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`; this.curRaf = requestAnimationFrame(tick); };
+    tick();
+  }
+
+  setupConfetti() {
+    const cv = document.createElement('canvas');
+    Object.assign(cv.style, { position: 'fixed', inset: '0', width: '100%', height: '100%', pointerEvents: 'none', zIndex: '9500' });
+    document.body.appendChild(cv); this.canvas = cv; this.parts = [];
+    const fit = () => { const d = devicePixelRatio || 1; cv.width = innerWidth * d; cv.height = innerHeight * d; cv.getContext('2d').setTransform(d, 0, 0, d, 0, 0); };
+    fit(); addEventListener('resize', fit);
+  }
+  burst(x, y, n = 90) {
+    if (this.reduced) n = Math.min(n, 20);
+    const cols = ['#416180', '#5980a6', '#94bce3', '#1d1f20', '#d6ebff', '#2c455d'];
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, sp = 4 + Math.random() * 9;
+      this.parts.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 6, r: Math.random() * 6, vr: (Math.random() - 0.5) * 0.3, s: 6 + Math.random() * 8, c: cols[i % cols.length], plus: Math.random() < 0.5, life: 1 });
+    }
+    if (!this.cRaf) this.animConfetti();
+  }
+  animConfetti() {
+    const ctx = this.canvas.getContext('2d');
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    this.parts = this.parts.filter((p) => p.life > 0 && p.y < innerHeight + 40);
+    for (const p of this.parts) {
+      p.vy += 0.28; p.vx *= 0.985; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life -= 0.006;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.globalAlpha = Math.min(1, p.life * 2); ctx.fillStyle = p.c;
+      if (p.plus) { ctx.fillRect(-p.s / 2, -1, p.s, 2); ctx.fillRect(-1, -p.s / 2, 2, p.s); } else ctx.fillRect(-p.s / 3, -p.s / 3, p.s / 1.5, p.s / 1.5);
+      ctx.restore();
+    }
+    this.cRaf = this.parts.length ? requestAnimationFrame(() => this.animConfetti()) : 0;
+  }
+
+  showToast(msg) {
+    clearTimeout(this.toastT);
+    this.setState({ toast: msg, toastOn: true });
+    this.toastT = setTimeout(() => this.setState({ toastOn: false }), 2800);
+  }
+  egg(id, msg) {
+    if (this.state.eggs[id]) return;
+    const eggs = { ...this.state.eggs, [id]: true };
+    try { localStorage.setItem('omkar-portfolio-eggs', JSON.stringify(eggs)); } catch (e) {}
+    this.setState({ eggs });
+    this.showToast(`Easter egg ${Object.keys(eggs).length}/3: ${msg}`);
+  }
+
+  count(i, delay = 0) {
+    const target = STATS[i].v, dur = this.reduced ? 1 : 1300;
+    setTimeout(() => {
+      const t0 = performance.now();
+      const step = (now) => {
+        const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        this.setState((s) => { const st = s.stats.slice(); st[i] = Math.round(target * e); return { stats: st }; });
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, delay);
+  }
+
+  vote() {
+    const votes = this.state.votes + 1;
+    try { localStorage.setItem('omkar-portfolio-votes', JSON.stringify(votes)); } catch (e) {}
+    const msg = VOTE_MSGS[(votes - 1) % VOTE_MSGS.length];
+    this.setState({ votes, voteMsg: msg, voteScale: 0.94 });
+    setTimeout(() => this.setState({ voteScale: 1 }), 120);
+    const b = this.voteBtnRef.current;
+    if (b) { const r = b.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) return this.burst(r.left + r.width / 2, r.top + r.height / 2, 110); }
+    this.burst(innerWidth / 2, innerHeight / 2, 110);
+  }
+
+  startDrag = (key) => (e) => {
+    const board = this.boardRef.current; if (!board) return;
+    e.preventDefault();
+    const rect = board.getBoundingClientRect(), p = this.state.pos[key];
+    this.drag = { key, rect, ox: e.clientX - (rect.left + p.x * rect.width), oy: e.clientY - (rect.top + p.y * rect.height), sx: e.clientX, sy: e.clientY, moved: false };
+    this.setState((s) => ({ dragging: key, order: s.order.filter((k) => k !== key).concat(key) }));
+    addEventListener('pointermove', this.onMove);
+    addEventListener('pointerup', this.onUp, { once: true });
+  };
+  onMove = (e) => {
+    const d = this.drag; if (!d) return;
+    if (Math.hypot(e.clientX - d.sx, e.clientY - d.sy) > 5) d.moved = true;
+    const x = Math.max(-0.08, Math.min(0.9, (e.clientX - d.ox - d.rect.left) / d.rect.width));
+    const y = Math.max(-0.08, Math.min(0.94, (e.clientY - d.oy - d.rect.top) / d.rect.height));
+    this.setState((s) => ({ pos: { ...s.pos, [d.key]: { ...s.pos[d.key], x, y } } }));
+  };
+  onUp = () => {
+    removeEventListener('pointermove', this.onMove);
+    const d = this.drag; this.drag = null;
+    this.setState({ dragging: null });
+    if (d && !d.moved && d.key === 'gavel') {
+      const objection = !this.state.objection;
+      this.setState({ objection });
+      if (objection) this.showToast('Sustained. The witness will answer the question.');
+    }
+  };
+
+  onHeadClick = () => {
+    const greetIdx = (this.state.greetIdx + 1) % GREETS.length;
+    this.setState({ greet: GREETS[greetIdx], greetIdx });
+    clearTimeout(this.greetT);
+    this.greetT = setTimeout(() => this.setState({ greet: '' }), 1600);
+    if (greetIdx === GREETS.length - 1) this.egg('hello', 'hello in all four of my languages.');
+  };
+
+  renderVals() {
+    const s = this.state;
+    const pos = {};
+    Object.keys(s.pos).forEach((k) => {
+      const p = s.pos[k], dr = s.dragging === k;
+      pos[k] = { left: p.x * 100 + '%', top: p.y * 100 + '%', tf: `rotate(${dr ? 0 : p.r}deg) scale(${dr ? 1.08 : 1})`, z: dr ? 30 : 10 + s.order.indexOf(k), sh: dr ? 'var(--shadow-lg)' : 'var(--shadow-sm)' };
+    });
+    const drag = {}; Object.keys(START_POS).forEach((k) => (drag[k] = this.startDrag(k)));
+    const fmt = (n) => n.toLocaleString('en-US');
+    const stat = {}, count = {};
+    STATS.forEach((st, i) => { stat['c' + i] = st.pre + fmt(s.stats[i]) + st.suf; count['c' + i] = () => this.count(i); });
+    const ids = ['head', 'harris', 'puri'];
+    const dev = {}, devOn = {}, devOff = {}, devToggle = {};
+    ids.forEach((id) => {
+      dev[id] = s.dev[id] ? 'developed' : '';
+      devOn[id] = () => this.setState((st) => ({ dev: { ...st.dev, [id]: true } }));
+      devOff[id] = () => this.setState((st) => ({ dev: { ...st.dev, [id]: false } }));
+      devToggle[id] = () => this.setState((st) => ({ dev: { ...st.dev, [id]: !st.dev[id] } }));
+    });
+    return {
+      boardRef: this.boardRef, statsRef: this.statsRef, voteBtnRef: this.voteBtnRef,
+      pos, drag, stat, count, dev, devOn, devOff, devToggle,
+      objection: s.objection ? 'Sustained.' : 'Objection!',
+      gavelRot: s.objection ? '-35deg' : '0deg',
+      greet: s.greet || ' ', greetOpacity: s.greet ? 1 : 0, greetY: s.greet ? '0px' : '8px',
+      onHeadClick: this.onHeadClick,
+      votes: fmt(s.votes), voteMsg: s.voteMsg || ' ', voteScale: s.voteScale,
+      onVote: () => this.vote(),
+      toast: s.toast || ' ', toastOpacity: s.toastOn ? 1 : 0, toastY: s.toastOn ? '0px' : '16px',
+      eggCount: Object.keys(s.eggs).length,
+      copyEmail: () => { try { navigator.clipboard.writeText('omkarsiddeswaran@gmail.com'); this.showToast('Email copied. Talk soon!'); } catch (e) { this.showToast('omkarsiddeswaran@gmail.com'); } },
+    };
+  }
+}
+</script>
+</body>
+</html>
